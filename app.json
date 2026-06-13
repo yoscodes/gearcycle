@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "gearcycle_new",
-    "slug": "gearcycle_new",
+    "name": "GearCycle",
+    "slug": "gearcycle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
