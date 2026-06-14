@@ -7,7 +7,7 @@ import GearCard from "../components/GearCard";
 import GearLogo from "../components/GearLogo";
 import UpsellModal from "../components/UpsellModal";
 import { useGear } from "../context/GearContext";
-import { GearItem } from "../types/gear";
+import { GearItem, computeRemainingPercent } from "../types/gear";
 import { RootStackParamList } from "../types/navigation";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Dashboard">;
@@ -18,8 +18,10 @@ export default function DashboardScreen() {
   const [showUpsell, setShowUpsell] = useState(false);
 
   // 残り寿命が短い順（緊急度が高い順）
-  const sorted = [...items].sort((a, b) => a.remainingPercent - b.remainingPercent);
-  const criticalCount = items.filter((g) => g.remainingPercent <= 20).length;
+  const sorted = [...items].sort(
+    (a, b) => computeRemainingPercent(a) - computeRemainingPercent(b)
+  );
+  const criticalCount = items.filter((g) => computeRemainingPercent(g) <= 20).length;
 
   const handleAdd = () => {
     if (isAtLimit) {
@@ -68,6 +70,13 @@ export default function DashboardScreen() {
         renderItem={({ item }) => <GearCard item={item} />}
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 110 }}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={
+          items.length > 0 ? (
+            <Text style={{ textAlign: "center", color: "#CBD5E1", fontSize: 11, marginTop: 4 }}>
+              カードを長押しすると管理を解除できます
+            </Text>
+          ) : null
+        }
         ListEmptyComponent={
           <View className="items-center justify-center py-20">
             <Text style={{ fontSize: 44 }}>⛺</Text>
