@@ -12,7 +12,6 @@ export const mockGearItems: GearItem[] = [
     icon: "🌬️",
     lifespanMonths: 3,
     registeredAt: NOW - days(79),
-    purchaseUrl: "https://www.amazon.co.jp/s?k=エアコンフィルター",
     recommendedUrl: "https://www.amazon.co.jp/s?k=エアコンフィルター+交換用+高性能&s=review-rank",
   },
   {
@@ -23,7 +22,6 @@ export const mockGearItems: GearItem[] = [
     icon: "🥾",
     lifespanMonths: 18,
     registeredAt: NOW - days(335),
-    purchaseUrl: "https://www.amazon.co.jp/s?k=トレッキングシューズ",
     recommendedUrl: "https://www.amazon.co.jp/s?k=トレッキングシューズ+防水+ゴアテックス&s=review-rank",
   },
   {
@@ -34,7 +32,6 @@ export const mockGearItems: GearItem[] = [
     icon: "⛺",
     lifespanMonths: 48,
     registeredAt: NOW - days(212),
-    purchaseUrl: "https://www.amazon.co.jp/s?k=テント",
     recommendedUrl: "https://www.amazon.co.jp/s?k=テント+ソロ+軽量+防水&s=review-rank",
   },
 ];

@@ -47,7 +47,6 @@ export default function AddItemScreen() {
       icon: template.icon,
       lifespanMonths: template.defaultLifespanMonths,
       registeredAt: Date.now(),
-      purchaseUrl: template.purchaseUrl,
       recommendedUrl: template.recommendedUrl,
     });
     navigation.goBack();

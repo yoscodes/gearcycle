@@ -1,13 +1,13 @@
 export type GearItem = {
   id: string;
-  templateId: string; // テンプレートのID（重複判定に使用）
+  templateId: string;
   name: string;
   category: string;
   icon: string;
   lifespanMonths: number;
   registeredAt: number; // Unix timestamp (ms)
-  purchaseUrl: string;
   recommendedUrl: string;
+  notificationIds?: string[];
 };
 
 export function computeRemainingPercent(item: GearItem): number {

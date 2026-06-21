@@ -73,7 +73,7 @@ export default function DashboardScreen() {
         ListFooterComponent={
           items.length > 0 ? (
             <Text style={{ textAlign: "center", color: "#CBD5E1", fontSize: 11, marginTop: 4 }}>
-              カードを長押しすると管理を解除できます
+              ← スワイプして削除
             </Text>
           ) : null
         }
@@ -112,7 +112,6 @@ export default function DashboardScreen() {
       <UpsellModal
         visible={showUpsell}
         onClose={() => setShowUpsell(false)}
-        onUpgrade={() => setShowUpsell(false)}
       />
     </SafeAreaView>
   );
