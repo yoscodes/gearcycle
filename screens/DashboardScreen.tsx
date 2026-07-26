@@ -41,7 +41,10 @@ export default function DashboardScreen() {
           <GearLogo size={28} />
           <Text className="text-slate-900 text-lg font-bold tracking-tight">gearcycle</Text>
         </View>
-        <TouchableOpacity className="bg-white border border-slate-200 p-2 rounded-xl">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Settings")}
+          className="bg-white border border-slate-200 p-2 rounded-xl"
+        >
           <Settings size={20} color="#64748B" />
         </TouchableOpacity>
       </View>
@@ -70,13 +73,7 @@ export default function DashboardScreen() {
         renderItem={({ item }) => <GearCard item={item} />}
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 110 }}
         showsVerticalScrollIndicator={false}
-        ListFooterComponent={
-          items.length > 0 ? (
-            <Text style={{ textAlign: "center", color: "#CBD5E1", fontSize: 11, marginTop: 4 }}>
-              ← スワイプして削除
-            </Text>
-          ) : null
-        }
+        ListFooterComponent={null}
         ListEmptyComponent={
           <View className="items-center justify-center py-20">
             <Text style={{ fontSize: 44 }}>⛺</Text>

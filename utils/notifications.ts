@@ -1,22 +1,30 @@
-import * as Notifications from 'expo-notifications';
+import { Platform } from 'react-native';
 import { GearItem } from '../types/gear';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: false,
-    shouldSetBadge: true,
-  }),
-});
+// expo-notifications is not supported on web
+let Notifications: typeof import('expo-notifications') | null = null;
+if (Platform.OS !== 'web') {
+  Notifications = require('expo-notifications');
+  Notifications!.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
+      shouldPlaySound: false,
+      shouldSetBadge: true,
+    }),
+  });
+}
 
 export async function requestNotificationPermission(): Promise<boolean> {
+  if (Platform.OS === 'web' || !Notifications) return false;
   const { status } = await Notifications.requestPermissionsAsync();
   return status === 'granted';
 }
 
 export async function scheduleItemNotifications(item: GearItem): Promise<string[]> {
+  if (Platform.OS === 'web' || !Notifications) return [];
+
   const ids: string[] = [];
   const lifespanMs = item.lifespanMonths * 30 * 24 * 60 * 60 * 1000;
   const now = Date.now();
@@ -48,5 +56,6 @@ export async function scheduleItemNotifications(item: GearItem): Promise<string[
 }
 
 export async function cancelItemNotifications(ids: string[]): Promise<void> {
-  await Promise.all(ids.map((id) => Notifications.cancelScheduledNotificationAsync(id)));
+  if (Platform.OS === 'web' || !Notifications) return;
+  await Promise.all(ids.map((id) => Notifications!.cancelScheduledNotificationAsync(id)));
 }
